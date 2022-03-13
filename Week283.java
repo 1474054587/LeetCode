@@ -1,4 +1,4 @@
-package leetcode;
+package LeetCode;
 
 import java.util.*;
 
@@ -87,8 +87,7 @@ class Week283 {
     public List<Integer> replaceNonCoprimes(int[] nums) {
         List<Integer> list = new ArrayList<>();
         Stack<Integer> stack = new Stack<>();
-        Stack<Integer> stack2 = new Stack<>();
-        for (int i = 0; i < nums.length; i++) {
+        for (int i = nums.length-1; i >= 0; i--) {
             stack.push(nums[i]);
             while (stack.size() > 1) {
                 int x = stack.pop();
@@ -103,26 +102,8 @@ class Week283 {
                 }
             }
         }
-        /*反转栈有两种方法
-        * 方法一：给list赋0，再用stack倒着赋值
-        for (int i = 0; i < stack.size(); i++) {
-            list.add(0);
-        }
-        for (int i = stack.size() - 1; i >= 0; i--) {
-            list.set(i,stack.pop());
-        }
-        * 用时 331ms
-        * 内存 58.2MB
-        * 方法二：stack倒入stack2，stack2赋给list
-        * 如下
-        * 用时393ms
-        * 内存 57.3MB
-        * */
         while (!stack.isEmpty()) {
-            stack2.add(stack.pop());
-        }
-        while (!stack2.isEmpty()) {
-            list.add(stack2.pop());
+            list.add(stack.pop());
         }
         return list;
     }
