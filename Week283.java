@@ -3,7 +3,13 @@ package LeetCode;
 import java.util.*;
 
 class Week283 {
-    //2194.(简单) Excel 表中某个范围内的单元格
+    /*
+    2194.(简单) Excel 表中某个范围内的单元格
+    思路：
+    1.字符串拆分
+    2.字符转整形，获取行、列起始值、截止值
+    3.两层for循环，先列后行拼接字符串，加入list
+     */
     public List<String> cellsInRange(String s) {
         char[] list = s.toCharArray();
         String x;
@@ -20,7 +26,12 @@ class Week283 {
         }
         return result;
     }
-    //2195.(中等) 向数组中追加 K 个整数
+    /*
+    2195.(中等) 向数组中追加 K 个整数
+    思路：
+    1.nums从小到大排序
+    2.贪心算法累加
+     */
     public long minimalKSum(int[] nums, int k) {
         Arrays.sort(nums);
         long ans = 0, start = 1;
@@ -37,7 +48,14 @@ class Week283 {
         }
         return ans;
     }
-    //2196.(中等) 根据描述创建二叉树
+    /*
+    2196.(中等) 根据描述创建二叉树
+    思路：
+    1.构造所有二叉树
+    2.将所有二叉树放进Map，key为其头结点，所有二叉树子节点放进Set
+    3.根据 isLeft 将父TreeNode与子TreeNode链接
+    4.查找Map中的key，如Set中没有，则为根结点
+     */
     public TreeNode createBinaryTree(int[][] descriptions) {
         HashSet<Integer> set = new HashSet<>();
         HashMap<Integer,TreeNode> map = new HashMap<>();
@@ -83,7 +101,14 @@ class Week283 {
             this.right = right;
         }
     }
-    //2197.(困难) 替换数组中的非互质数
+    /*
+    2197.(困难) 替换数组中的非互质数
+    思路：
+    1.将数组倒序填入单调栈（当然顺序也可以，这样最后就要把栈反转，复杂度差不多）
+    2.每次入栈时，循环弹出栈顶两个元素并比较，直到只剩一个元素
+    3.比较：如两元素不互质，最小公倍数入栈；如互质，都入栈，循环终止
+    4.将栈赋给list，返回list
+     */
     public List<Integer> replaceNonCoprimes(int[] nums) {
         List<Integer> list = new ArrayList<>();
         Stack<Integer> stack = new Stack<>();
